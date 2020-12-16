@@ -1,0 +1,83 @@
+﻿@page
+@model InvestMe.Pages.Forms.CompoundPageModel
+@{
+}
+
+<!DOCTYPE html>
+<html lang="en">
+
+
+
+<main id="main">
+
+    <!-- ======= About Section ======= -->
+    <section id="about" class="about">
+        <div data-aos="fade-up">
+            <p>
+                This is a compound calculator that can be used to calculate the compounding interest.
+                This can be used to visualize the advantages of investing money and allowing that money to grow!
+            </p>
+        </div>
+    </section><!-- End About Section -->
+    <!-- ======= Services Section ======= -->
+    <section id="services" class="services section-bg">
+        <div class="container">
+
+            <form method="post">
+                <div class="container">
+                    <div class="row align-items-start">
+                        <div class="col">
+                            <label class="bad">Initial Deposit: </label>
+                            <input type="number" class="form-control" asp-for="InitialDeposit" placeholder="Initial Deposit" />
+                        </div>
+                        <div class="col">
+                            <label>Regular Deposit: </label>
+                            <input disabled type="number" class="form-control" asp-for="RegularDeposit" placeholder="Regular Deposit" />
+                        </div>
+                        <div class="col">
+                            <label>Compound Frequency: </label>
+                            <select class="form-control" aria-label="Default select example" asp-for="CompoundFrequency">
+                                <option value="12">Monthly</option>
+                                <option value="6">6 Months</option>
+                                <option value="1">Yearly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row align-items-center">
+                        <div class="col">
+                            <label>Number of Years: </label>
+                            <input type="number" class="form-control" asp-for="NumOfYears" placeholder="Number of Years" />
+                        </div>
+                        <div class="col">
+                            <label>Annual Interest rate</label>
+                            <input type="number" class="form-control" asp-for="AnnualInterest" placeholder="Annual interest rate" />
+                        </div>
+                        <div class="col">
+                            <label>Deposit Frequency: </label>
+                            <select disabled class="form-control" aria-label="Default select example" asp-for="DepositFrequency">
+                                <option value="daily">Daily</option>
+                                <option value="weekly">Weekly</option>
+                                <option value="monthly">Monthly</option>
+                                <option value="yearly">Yearly</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row align-items-end">
+
+                        <div class="col">
+                            <button class="btn btn-primary">Compound!</button>
+                        </div>
+
+                        <div class="col">
+
+                            <h3>@Model.Compound()</h3>
+                        </div>
+                    </div>
+                </div>
+            </form>
+
+        </div>
+    </section><!-- End Services Section -->
+
+
+</main><!-- End #main -->
