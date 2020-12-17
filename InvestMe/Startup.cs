@@ -34,6 +34,16 @@ namespace InvestMe
             services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
                 .AddEntityFrameworkStores<ApplicationDbContext>();
             services.AddRazorPages();
+
+            services.AddAuthentication()
+                .AddGoogle(options =>
+                {
+                    IConfigurationSection googleAuthNSection =
+                        Configuration.GetSection("Authentication:Google");
+
+                    options.ClientId = "913879348676-5gfpgga1pmcukos0e85o4g0rnmlkh39g.apps.googleusercontent.com";
+                    options.ClientSecret = "-vvhyKOal26Lr_LTqewQZHrC";
+                });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

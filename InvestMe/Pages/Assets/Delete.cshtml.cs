@@ -7,9 +7,11 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
 using InvestMe.Data;
 using InvestMe.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InvestMe
 {
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly InvestMe.Data.ApplicationDbContext _context;

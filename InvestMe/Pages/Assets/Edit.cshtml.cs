@@ -8,9 +8,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
 using InvestMe.Data;
 using InvestMe.Models;
+using Microsoft.AspNetCore.Authorization;
 
 namespace InvestMe
 {
+    [Authorize]
     public class EditModel : PageModel
     {
         private readonly InvestMe.Data.ApplicationDbContext _context;
