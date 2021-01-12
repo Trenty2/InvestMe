@@ -4,6 +4,8 @@ using System.Linq;
 using System.Security.Cryptography.X509Certificates;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Identity;
+using InvestMe.Models;
+using InvestMe;
 
 namespace InvestMe.Models
 {

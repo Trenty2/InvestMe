@@ -12,6 +12,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using InvestMe.Models;
 
 namespace InvestMe
 {
@@ -31,8 +32,14 @@ namespace InvestMe
                 options.UseSqlServer(
                     Configuration.GetConnectionString("DefaultConnection")));
             services.AddDatabaseDeveloperPageExceptionFilter();
-            services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
-                .AddEntityFrameworkStores<ApplicationDbContext>();
+
+            //creates user based on applicationUser and ApplicationRole
+            services.AddIdentity<ApplicationUser, ApplicationRole>(
+                   options => options.Stores.MaxLengthForKeys = 128)
+               .AddEntityFrameworkStores<ApplicationDbContext>()
+               .AddDefaultUI()
+               .AddDefaultTokenProviders();
+
             services.AddRazorPages();
 
             services.AddAuthentication()
@@ -47,7 +54,7 @@ namespace InvestMe
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
-        public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
+        public void Configure(IApplicationBuilder app, IWebHostEnvironment env, ApplicationDbContext context, RoleManager<ApplicationRole> roleManager, UserManager<ApplicationUser> userManager)
         {
             if (env.IsDevelopment())
             {
@@ -73,6 +80,8 @@ namespace InvestMe
             {
                 endpoints.MapRazorPages();
             });
+
+            DummyData.Initialize(context, userManager, roleManager).Wait();
         }
     }
 }
