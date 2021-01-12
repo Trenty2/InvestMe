@@ -47,20 +47,19 @@
                         <th></th>
                     </tr>
                 </thead>
-                @*Currently working on conditional rendering for users and assets*@
-            <tbody>
+               
+                <tbody>
 
-                @{
-                    //conditional rendering attempts
-                    var currentUser = await UserManager.GetUserAsync(User);
+                    @{
+                        //Gets the currentUser from UserManager
+                        var currentUser = await UserManager.GetUserAsync(User);
+                    }
 
-                }
 
-                {
-                    @foreach (var item in Model.Asset)
+                    <!-- ======= Renders the Assets for the currentUser ======= -->
+                    @foreach (var item in currentUser.Assets)
+
                     {
-
-                        @if (item.User.Id.Equals(currentUser.Id))
 
                         {
                             <tr>
@@ -81,8 +80,8 @@
                             </tr>
                         }
                     }
-                }
-            </tbody>
+
+                </tbody>
             </table>
 
         </div>
