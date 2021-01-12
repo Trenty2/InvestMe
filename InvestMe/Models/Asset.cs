@@ -20,5 +20,7 @@ namespace InvestMe.Models
         [DataType(DataType.Currency)]
         [Display(Name = "Current Price")]
         public decimal CurrentPrice { get; set; }
+
+        public ApplicationUser? User { get; set; }
     }
 }

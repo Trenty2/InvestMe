@@ -1,5 +1,7 @@
 ﻿@page
+@using InvestMe.Models
 @model InvestMe.IndexModel
+@inject UserManager<ApplicationUser> UserManager
 
 @{
     ViewData["Title"] = "Index";
@@ -32,39 +34,46 @@
             </form>
             <table class="table">
                 <thead>
-                <tr>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Asset[0].Name)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Asset[0].PurchasePrice)
-                    </th>
-                    <th>
-                        @Html.DisplayNameFor(model => model.Asset[0].CurrentPrice)
-                    </th>
-                    <th></th>
-                </tr>
+                    <tr>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Asset[0].Name)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Asset[0].PurchasePrice)
+                        </th>
+                        <th>
+                            @Html.DisplayNameFor(model => model.Asset[0].CurrentPrice)
+                        </th>
+                        <th></th>
+                    </tr>
                 </thead>
                 @*Currently working on conditional rendering for users and assets*@
                 <tbody>
+
                     @foreach (var item in Model.Asset)
                     {
-                        <tr>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.Name)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.PurchasePrice)
-                            </td>
-                            <td>
-                                @Html.DisplayFor(modelItem => item.CurrentPrice)
-                            </td>
-                            <td>
-                                <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                                <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                                <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                            </td>
-                        </tr>
+                        var currentUser = await UserManager.GetUserAsync(User);
+
+                        @if (item.User.Id.Equals(currentUser.Id))
+
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PurchasePrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentPrice)
+                                </td>
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                                </td>
+                            </tr>
+                        }
                     }
                 </tbody>
             </table>
