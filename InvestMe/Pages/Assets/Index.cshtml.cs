@@ -28,7 +28,7 @@ namespace InvestMe
 
         public async Task OnGetAsync()
         {
-            //LINQ query to select movie
+            //LINQ query to select Asset
             var assets = from a in _context.Asset
                 select a;
 

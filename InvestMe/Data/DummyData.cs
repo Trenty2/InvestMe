@@ -78,11 +78,7 @@ namespace InvestMe.Data
                     await userManager.AddPasswordAsync(user, password);
                     await userManager.AddToRoleAsync(user, role1);
                 }
-
             }
-
-            
-
             
         }
     }
