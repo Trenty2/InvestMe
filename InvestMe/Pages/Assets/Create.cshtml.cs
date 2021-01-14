@@ -15,11 +15,11 @@ namespace InvestMe
     [Authorize]
     public class CreateModel : PageModel
     {
-        private readonly InvestMe.Data.ApplicationDbContext _context;
+        private readonly ApplicationDbContext _context;
         private readonly UserManager<ApplicationUser> _userManager;
 
 
-        public CreateModel(InvestMe.Data.ApplicationDbContext context, UserManager<ApplicationUser> userManager)
+        public CreateModel(ApplicationDbContext context, UserManager<ApplicationUser> userManager)
         {
             _context = context;
             _userManager = userManager;
