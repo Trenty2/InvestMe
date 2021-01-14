@@ -58,29 +58,31 @@
                     }
 
 
-                    <!-- ======= Renders the Assets for the currentUser - will break if there are no assets in DB ======= -->
+                <!-- ======= Renders the Assets for the currentUser - will break if there are no assets in DB need to add statements to take
+                the user to create page if null instead of  ======= -->
+
                     @foreach (var item in currentUser.Assets)
 
                     {
 
                         {
-                    <tr>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.Name)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.PurchasePrice)
-                        </td>
-                        <td>
-                            @Html.DisplayFor(modelItem => item.CurrentPrice)
-                        </td>
-                        
-                        <td>
-                            <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                            <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                            <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                        </td>
-                    </tr>
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.PurchasePrice)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.CurrentPrice)
+                                </td>
+
+                                <td>
+                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                                </td>
+                            </tr>
                         }
                     }
 

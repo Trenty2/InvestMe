@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace InvestMe.Migrations
 {
-    public partial class Identity : Migration
+    public partial class Test : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -181,6 +181,28 @@ namespace InvestMe.Migrations
                         onDelete: ReferentialAction.Restrict);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Debts",
+                columns: table => new
+                {
+                    ID = table.Column<int>(type: "int", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Creditor = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    InitialDebt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    CurrentDebt = table.Column<decimal>(type: "decimal(18,2)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Debts", x => x.ID);
+                    table.ForeignKey(
+                        name: "FK_Debts_AspNetUsers_UserId",
+                        column: x => x.UserId,
+                        principalTable: "AspNetUsers",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -224,6 +246,11 @@ namespace InvestMe.Migrations
                 name: "IX_Asset_UserId",
                 table: "Asset",
                 column: "UserId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Debts_UserId",
+                table: "Debts",
+                column: "UserId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -245,6 +272,9 @@ namespace InvestMe.Migrations
 
             migrationBuilder.DropTable(
                 name: "Asset");
+
+            migrationBuilder.DropTable(
+                name: "Debts");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

@@ -19,5 +19,6 @@ namespace InvestMe.Models
         public string City { get; set; }
         public string Country { get; set; }
         public ICollection<Asset> Assets { get; set; }
+        public ICollection<Debt> Debts { get; set; }
     }
 }

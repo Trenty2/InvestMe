@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace InvestMe.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210112145820_Init")]
-    partial class Init
+    [Migration("20210114051904_Test")]
+    partial class Test
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -160,6 +160,32 @@ namespace InvestMe.Migrations
                     b.ToTable("Asset");
                 });
 
+            modelBuilder.Entity("InvestMe.Models.Debt", b =>
+                {
+                    b.Property<int>("ID")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("int")
+                        .UseIdentityColumn();
+
+                    b.Property<string>("Creditor")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<decimal>("CurrentDebt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<decimal>("InitialDebt")
+                        .HasColumnType("decimal(18,2)");
+
+                    b.Property<string>("UserId")
+                        .HasColumnType("nvarchar(450)");
+
+                    b.HasKey("ID");
+
+                    b.HasIndex("UserId");
+
+                    b.ToTable("Debts");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.Property<int>("Id")
@@ -277,6 +303,15 @@ namespace InvestMe.Migrations
                     b.Navigation("User");
                 });
 
+            modelBuilder.Entity("InvestMe.Models.Debt", b =>
+                {
+                    b.HasOne("InvestMe.Models.ApplicationUser", "User")
+                        .WithMany("Debts")
+                        .HasForeignKey("UserId");
+
+                    b.Navigation("User");
+                });
+
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
                 {
                     b.HasOne("InvestMe.Models.ApplicationRole", null)
@@ -331,6 +366,8 @@ namespace InvestMe.Migrations
             modelBuilder.Entity("InvestMe.Models.ApplicationUser", b =>
                 {
                     b.Navigation("Assets");
+
+                    b.Navigation("Debts");
                 });
 #pragma warning restore 612, 618
         }
