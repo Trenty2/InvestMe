@@ -1,0 +1,37 @@
+﻿@page
+@model InvestMe.Pages.Debts.DetailsModel
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+<h1>Details</h1>
+
+<div>
+    <h4>Debt</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Debt.Creditor)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Debt.Creditor)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Debt.InitialDebt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Debt.InitialDebt)
+        </dd>
+        <dt class="col-sm-2">
+            @Html.DisplayNameFor(model => model.Debt.CurrentDebt)
+        </dt>
+        <dd class="col-sm-10">
+            @Html.DisplayFor(model => model.Debt.CurrentDebt)
+        </dd>
+    </dl>
+</div>
+<div>
+    <a asp-page="./Edit" asp-route-id="@Model.Debt.ID">Edit</a> |
+    <a asp-page="./Index">Back to List</a>
+</div>

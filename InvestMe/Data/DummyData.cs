@@ -79,7 +79,7 @@ namespace InvestMe.Data
                     await userManager.AddToRoleAsync(user, role1);
                 }
             }
-            
+
         }
     }
 

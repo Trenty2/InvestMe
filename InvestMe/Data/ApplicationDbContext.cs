@@ -13,6 +13,7 @@ namespace InvestMe.Data
             : base(options)
         {
         }
-        public DbSet<InvestMe.Models.Asset> Asset { get; set; }
+        public DbSet<Asset> Asset { get; set; }
+        public DbSet<Debt> Debts { get; set; }
     }
 }
