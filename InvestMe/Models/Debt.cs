@@ -22,5 +22,15 @@ namespace InvestMe.Models
         public decimal CurrentDebt { get; set; }
 
         public ApplicationUser User { get; set; }
+
+
+        public decimal PaidDown()
+        {
+            var result = InitialDebt - CurrentDebt;
+
+            return result;
+        }
+
+        
     }
 }

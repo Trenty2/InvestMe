@@ -46,6 +46,10 @@
                         <th>
                             @Html.DisplayNameFor(model => model.Asset[0].CurrentPrice)
                         </th>
+                        <th>
+                            Profit/Loss
+                        </th>
+                        
                         <th></th>
                     </tr>
                 </thead>
@@ -63,26 +67,30 @@
 
                     @*@foreach (var item in currentUser.Assets)*@
                 @foreach (var item in Model.Asset)
-                    {
-
+                {
+                    var difference = item.Difference();
+                    var percentageDifference = item.PercentageDifference();
                         {
-                            <tr>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.Name)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.PurchasePrice)
-                                </td>
-                                <td>
-                                    @Html.DisplayFor(modelItem => item.CurrentPrice)
-                                </td>
+                    <tr>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.Name)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.PurchasePrice)
+                        </td>
+                        <td>
+                            @Html.DisplayFor(modelItem => item.CurrentPrice)
+                        </td>
+                        <td>
+                            $@Html.DisplayFor(modelItem => difference) (@Html.DisplayFor(modelItem => percentageDifference) %)
+                        </td>
 
-                                <td>
-                                    <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
-                                    <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
-                                    <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
-                                </td>
-                            </tr>
+                        <td>
+                            <a asp-page="./Edit" asp-route-id="@item.ID">Edit</a> |
+                            <a asp-page="./Details" asp-route-id="@item.ID">Details</a> |
+                            <a asp-page="./Delete" asp-route-id="@item.ID">Delete</a>
+                        </td>
+                    </tr>
                         }
                     }
 

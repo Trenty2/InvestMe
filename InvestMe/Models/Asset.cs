@@ -23,5 +23,23 @@ namespace InvestMe.Models
         public decimal CurrentPrice { get; set; }
 
         public ApplicationUser? User { get; set; }
+
+        public decimal Difference()
+        {
+            var difference = CurrentPrice - PurchasePrice;
+
+            return difference;
+        }
+
+        public decimal PercentageDifference()
+        {
+
+            var numerator = CurrentPrice - PurchasePrice;
+            var denominator = CurrentPrice + PurchasePrice / 2;
+
+            var result = numerator / denominator * 100;
+
+            return result;
+        }
     }
 }
