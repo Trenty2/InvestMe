@@ -55,17 +55,17 @@
             <nav class="main-nav d-none d-lg-block">
                 <ul>
                     <li class="active"><a asp-page="/Index">Home</a></li>
-                    <li><a href="#about">About Us</a></li>
-                    <li><a asp-page="/Assets/Index">Portfolio Tracker</a>
+                    <li><a asp-page="/Assets/Index">Asset Portfolio</a>
+                    <li><a asp-page="/Debts/Index">Debt Portfolio</a>
                     <li class="drop-down">
-                        <a href="">Finance Calculators</a>
+                        <a href="">Services</a>
                         <ul>
-                            <li><a asp-page="/Forms/CompoundPage">Compound Calculator</a></li>
+                            <li><a asp-page="">Budget Manager</a></li>
                             <li class="drop-down">
-                                <a href="#">Drop Down 2</a>
+                                <a href="#">Finance Calculators</a>
                                 <ul>
-                                    <li><a href="#">Deep Drop Down 1</a></li>
-                                    <li><a href="#">Deep Drop Down 2</a></li>
+                                    <li><a asp-page="/Forms/CompoundPage">Compound Calculator</a></li>
+                                    <li><a href="#">Net Worth Calculator</a></li>
                                     <li><a href="#">Deep Drop Down 3</a></li>
                                 </ul>
                             </li>
